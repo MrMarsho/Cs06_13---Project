@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About + Tic-Tac-Toe</title>
+    <link
+      rel="icon"
+      href="https://github.com/sebastianarcilla/cs06cs13project/raw/main/chill-icon-454x512-uv6tq5yc.png"
+      type="image/x-icon"
+    />
+
+    <style>
+      body {
+        font-family: "Open Sans", sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        background: url("https://github.com/sebastianarcilla/cs06cs13project/raw/main/outrun-neon-dark-background-purple-2560x1440-4523.jpg")
+          no-repeat center center fixed; /* Background image */
+        background-size: cover;
+        color: white;
+      }
+      header,
+      footer {
+        background-color: #00008b;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        width: 100%;
+      }
+      .container {
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+      }
+      h1 {
+        margin-bottom: 20px;
+      }
+      #game {
+        display: grid;
+        grid-template-columns: repeat(3, 100px);
+        grid-template-rows: repeat(3, 100px);
+        gap: 10px;
+        margin: auto;
+      }
+      .cell {
+        width: 100px;
+        height: 100px;
+        background-color: #444;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2em;
+        cursor: pointer;
+        color: white;
+      }
+      #result {
+        margin-top: 20px;
+        font-size: 1.5em;
+      }
+      #restart-button {
+        display: none;
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 1em;
+        cursor: pointer;
+        background-color: #00008b;
+        color: white;
+        border: none;
+        border-radius: 5px;
+      }
+      #about {
+        margin-bottom: 20px;
+        font-size: 1.2em;
+      }
+      #back-button {
+        margin: 20px 0;
+        padding: 10px 20px;
+        font-size: 1em;
+        cursor: pointer;
+        background-color: #00008b;
+        color: white;
+        border: none;
+        border-radius: 5px;
+      }
+      #background-switcher {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        padding: 3px 10px;
+        font-size: 10px;
+        cursor: pointer;
+        background-color: #00bfff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        transition: background-color 0.3s, color 0.3s;
+      }
+      #background-switcher:hover {
+        background-color: #00a3cc;
+        color: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>About Us + Tic-Tac-Toe</h1>
+    </header>
+    <div class="container">
+      <button id="back-button" onclick="window.location.href='/index.html';">
+        Back to Home Page
+      </button>
+      <div id="about">
+        <p>
+          We are a group of students who understand the challenges of managing
+          academics and mental well-being. We created Mindless Motivation to
+          provide you with resources and tools to help you stay on track while
+          prioritizing your mental health.
+        </p>
+      </div>
+      <div id="game">
+        <div class="cell" data-index="0"></div>
+        <div class="cell" data-index="1"></div>
+        <div class="cell" data-index="2"></div>
+        <div class="cell" data-index="3"></div>
+        <div class="cell" data-index="4"></div>
+        <div class="cell" data-index="5"></div>
+        <div class="cell" data-index="6"></div>
+        <div class="cell" data-index="7"></div>
+        <div class="cell" data-index="8"></div>
+      </div>
+      <div id="result"></div>
+      <button id="restart-button">Restart Game</button>
+    </div>
+    <footer>
+      <p>&copy; Arcilla, Esguerra</p>
+    </footer>
+
+    <button id="background-switcher">Switch Background</button>
+    <script>
+      document
+        .getElementById("background-switcher")
+        .addEventListener("click", function () {
+          var body = document.body;
+          if (
+            body.style.backgroundImage ===
+            'url("https://github.com/sebastianarcilla/cs06cs13project/raw/main/light%20mode.jpg")'
+          ) {
+            body.style.backgroundImage =
+              'url("https://github.com/sebastianarcilla/cs06cs13project/raw/main/outrun-neon-dark-background-purple-2560x1440-4523.jpg")';
+          } else {
+            body.style.backgroundImage =
+              'url("https://github.com/sebastianarcilla/cs06cs13project/raw/main/light%20mode.jpg")';
+          }
+        });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const cells = document.querySelectorAll(".cell");
+        const result = document.getElementById("result");
+        const restartButton = document.getElementById("restart-button");
+        let board = ["", "", "", "", "", "", "", "", ""];
+        let currentPlayer = "X";
+
+        const winningCombinations = [
+          [0, 1, 2],
+          [3, 4, 5],
+          [6, 7, 8],
+          [0, 3, 6],
+          [1, 4, 7],
+          [2, 5, 8],
+          [0, 4, 8],
+          [2, 4, 6],
+        ];
+
+        cells.forEach((cell) => {
+          cell.addEventListener("click", () => {
+            const index = cell.getAttribute("data-index");
+            if (board[index] === "" && currentPlayer === "X") {
+              board[index] = "X";
+              cell.textContent = "X";
+              if (checkWin("X")) {
+                result.textContent = "You win!";
+                restartButton.style.display = "block";
+                return;
+              } else if (board.every((cell) => cell !== "")) {
+                result.textContent = "It's a draw!";
+                restartButton.style.display = "block";
+                return;
+              }
+              currentPlayer = "O";
+              computerMove();
+            }
+          });
+        });
+
+        function computerMove() {
+          let availableCells = [];
+          board.forEach((cell, index) => {
+            if (cell === "") availableCells.push(index);
+          });
+
+          const randomIndex =
+            availableCells[Math.floor(Math.random() * availableCells.length)];
+          board[randomIndex] = "O";
+          cells[randomIndex].textContent = "O";
+
+          if (checkWin("O")) {
+            result.textContent = "Computer wins!";
+            restartButton.style.display = "block";
+            return;
+          } else if (board.every((cell) => cell !== "")) {
+            result.textContent = "It's a draw!";
+            restartButton.style.display = "block";
+            return;
+          }
+          currentPlayer = "X";
+        }
+
+        function checkWin(player) {
+          return winningCombinations.some((combination) => {
+            return combination.every((index) => {
+              return board[index] === player;
+            });
+          });
+        }
+
+        restartButton.addEventListener("click", () => {
+          board = ["", "", "", "", "", "", "", "", ""];
+          cells.forEach((cell) => {
+            cell.textContent = "";
+          });
+          currentPlayer = "X";
+          result.textContent = "";
+          restartButton.style.display = "none";
+        });
+      });
+    </script>
+  </body>
+</html>

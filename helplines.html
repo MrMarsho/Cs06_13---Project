@@ -1,0 +1,313 @@
+v     <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Helplines - Space Invaders</title>
+    <link rel="icon" href="https://github.com/sebastianarcilla/cs06cs13project/raw/main/chill-icon-454x512-uv6tq5yc.png" type="image/x-icon">
+
+    <style>
+      body {
+        color: blue;
+        font-family: "Open Sans", sans-serif;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: url('https://github.com/sebastianarcilla/cs06cs13project/raw/main/outrun-neon-dark-background-purple-2560x1440-4523.jpg') no-repeat center center fixed; /* Highlighted code */
+      }
+
+      header,
+      footer {
+        background-color: #00008b;
+        color: white;
+        padding: 10px;
+        text-align: center;
+      }
+
+      footer {
+        margin-top: auto;
+      }
+  
+      #game {
+        width: 1500px;
+        height: 800px;
+        background: black;
+        position: relative;
+        overflow: hidden;
+      }
+      /* Player and Invaders */
+      .player,
+      .invader {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+      }
+      .player {
+        background: url("https://github.com/sebastianarcilla/cs06cs13project/raw/main/download%20(5).png")
+          no-repeat center center;
+        background-size: cover;
+        bottom: 10px;
+        left: calc(50% - 20px);
+      }
+     .invader {
+            background: url('https://github.com/sebastianarcilla/cs06cs13project/raw/main/Skibidi_toilet_screenshot.webp.png') no-repeat center center;
+            background-size: cover;
+        }
+
+      .bullet {
+        position: absolute;
+        width: 20px; /* Adjusted width for the image */
+        height: 40px; /* Adjusted height for the image */
+        background: url("https://github.com/sebastianarcilla/cs06cs13project/raw/main/g0hbdsai2swc1.jpeg")
+          no-repeat center center;
+        background-size: cover;
+      }
+
+      #lose-message {
+        display: none;
+        color: white;
+        font-size: 24px;
+        text-align: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      #restart-button {
+        display: none;
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      #score {
+        color: white;
+        font-size: 18px;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+      }
+      #lines {
+        background-color: white;
+        border-radius: 10px;
+        padding: 10px;
+      }
+      #background-switcher {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        padding: 3px 10px;
+        font-size: 10px;
+        cursor: pointer;
+        background-color: #00bfff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        transition: background-color 0.3s, color 0.3s;
+      }
+      #background-switcher:hover {
+        background-color: #00a3cc;
+        color: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Helplines</h1>
+    </header>
+
+    <main>
+      <div id="lines">
+        <p>If you are struggling, please reach out for help, remember - it's not the end. It might be the start of a new beginning for you. So please do not go. Here are a few helplines:</p>
+        <ul>
+            <li>National Suicide Prevention Lifeline: 988</li>
+            <li>HOPELINE - 24/7 Confidential Support: (02) 8804-4673</li>
+      </ul>
+        <p>Enjoy a quick game of Space Invaders below!</p>
+      </div>
+      <br>
+       <button onclick="window.location.href='/index.html';">Back to Home Page</button>
+      <br>
+      <div id="game">
+        <div class="player" id="player"></div>
+        <div id="lose-message">You Lose</div>
+        <button id="restart-button">Try Again</button>
+        <div id="score">Score: 0</div>
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; Arcilla, Esguerra</p>
+    </footer>
+    
+    <button id="background-switcher">Switch Background</button>
+    <script>
+      document.getElementById('background-switcher').addEventListener('click', function() {
+        var body = document.body;
+        if (body.style.backgroundImage === 'url("https://github.com/sebastianarcilla/cs06cs13project/raw/main/light%20mode.jpg")') {
+          body.style.backgroundImage = 'url("https://github.com/sebastianarcilla/cs06cs13project/raw/main/outrun-neon-dark-background-purple-2560x1440-4523.jpg")';
+        } else {
+          body.style.backgroundImage = 'url("https://github.com/sebastianarcilla/cs06cs13project/raw/main/light%20mode.jpg")';
+        }
+      });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const game = document.getElementById("game");
+        const player = document.getElementById("player");
+        const loseMessage = document.getElementById("lose-message");
+        const restartButton = document.getElementById("restart-button");
+        const scoreDisplay = document.getElementById("score");
+        let playerPosition = game.offsetWidth / 2 - player.offsetWidth / 2;
+        const playerSpeed = 10;
+        const bulletSpeed = 5;
+        const invaderSpeed = 2;
+        let bullets = [];
+        let invaders = [];
+        let invaderDirection = 1;
+        let gameOver = false;
+        let score = 0;
+
+        document.addEventListener("keydown", (e) => {
+          if (gameOver) return;
+          if (e.key === "ArrowLeft" && playerPosition > 0) {
+            playerPosition -= playerSpeed;
+            player.style.left = `${playerPosition}px`;
+          } else if (
+            e.key === "ArrowRight" &&
+            playerPosition < game.offsetWidth - player.offsetWidth
+          ) {
+            playerPosition += playerSpeed;
+            player.style.left = `${playerPosition}px`;
+          } else if (e.key === " ") {
+            shoot();
+          }
+        });
+
+        function shoot() {
+          const bullet = document.createElement("div");
+          bullet.className = "bullet";
+          bullet.style.left = `${
+            playerPosition + player.offsetWidth / 2 - 10
+          }px`; // Adjusted for the image size
+          bullet.style.bottom = `${player.offsetHeight + 10}px`;
+          game.appendChild(bullet);
+          bullets.push(bullet);
+        }
+
+        function createInvaders() {
+          for (let i = 0; i < 5; i++) {
+            for (let j = 0; j < 9; j++) {
+              // Adjusted number of invaders to fit the smaller game area
+              const invader = document.createElement("div");
+              invader.className = "invader";
+              invader.style.left = `${j * 60}px`;
+              invader.style.top = `${i * 60}px`;
+              game.appendChild(invader);
+              invaders.push(invader);
+            }
+          }
+        }
+
+        createInvaders();
+
+        function moveInvaders() {
+          invaders.forEach((invader) => {
+            let left = parseInt(invader.style.left);
+            invader.style.left = `${left + invaderSpeed * invaderDirection}px`;
+          });
+
+          const firstInvader = invaders[0];
+          const lastInvader = invaders[invaders.length - 1];
+          if (
+            parseInt(firstInvader.style.left) <= 0 ||
+            parseInt(lastInvader.style.left) >=
+              game.offsetWidth - firstInvader.offsetWidth
+          ) {
+            invaderDirection *= -1;
+            invaders.forEach((invader) => {
+              invader.style.top = `${parseInt(invader.style.top) + 20}px`;
+              // Check if any invader reaches the bottom of the screen
+              if (
+                parseInt(invader.style.top) + invader.offsetHeight >=
+                game.offsetHeight
+              ) {
+                gameOver = true;
+                loseMessage.style.display = "block";
+                restartButton.style.display = "block";
+              }
+            });
+          }
+        }
+
+        function moveBullets() {
+          bullets = bullets.filter((bullet) => {
+            bullet.style.bottom = `${
+              parseInt(bullet.style.bottom) + bulletSpeed
+            }px`;
+            if (parseInt(bullet.style.bottom) > game.offsetHeight) {
+              bullet.remove();
+              return false;
+            }
+            return true;
+          });
+        }
+
+        function checkCollisions() {
+          bullets.forEach((bullet) => {
+            invaders.forEach((invader, index) => {
+              if (
+                parseInt(bullet.style.left) >= parseInt(invader.style.left) &&
+                parseInt(bullet.style.left) <=
+                  parseInt(invader.style.left) + invader.offsetWidth &&
+                parseInt(bullet.style.bottom) >= parseInt(invader.style.top) &&
+                parseInt(bullet.style.bottom) <=
+                  parseInt(invader.style.top) + invader.offsetHeight
+              ) {
+                bullet.remove();
+                invader.remove();
+                bullets = bullets.filter((b) => b !== bullet);
+                invaders.splice(index, 1);
+                // Update the score
+                score++;
+                scoreDisplay.textContent = `Score: ${score}`;
+              }
+            });
+          });
+        }
+
+        function gameLoop() {
+          if (gameOver) return;
+          moveInvaders();
+          moveBullets();
+          checkCollisions();
+          requestAnimationFrame(gameLoop);
+        }
+
+        gameLoop();
+
+        restartButton.addEventListener("click", () => {
+          gameOver = false;
+          loseMessage.style.display = "none";
+          restartButton.style.display = "none";
+          bullets.forEach((bullet) => bullet.remove());
+          bullets = [];
+          invaders.forEach((invader) => invader.remove());
+          invaders = [];
+          createInvaders();
+          playerPosition = game.offsetWidth / 2 - player.offsetWidth / 2;
+          player.style.left = `${playerPosition}px`;
+          score = 0; // Reset the score
+          scoreDisplay.textContent = `Score: ${score}`;
+          gameLoop();
+        });
+      });
+    </script>
+  </body>
+</html>

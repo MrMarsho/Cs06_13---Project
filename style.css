@@ -1,0 +1,239 @@
+body {
+  background-color: #ffffff;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: blue;
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: url('https://github.com/sebastianarcilla/cs06cs13project/raw/main/outrun-neon-dark-background-purple-2560x1440-4523.jpg') no-repeat center center fixed; /* Highlighted code */
+  background-size: cover; /* Highlighted code */
+  font-family: Arial, sans-serif;
+    transition: background-image 0.5s ease-in-out;
+    background-color: #f0f0f0;
+}
+
+header, footer {
+    background-color: #00008B; /* Dark blue color */
+    color: white; /* Optional: Make the text color white for better contrast */
+    padding: 10px; /* Optional: Add some padding */
+    text-align: center; /* Optional: Center the text */
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+}
+
+h1 {
+  margin: 0;
+  padding: 10px;
+}
+
+section {
+  margin-bottom: 20px;
+}
+
+div {
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.main-links a, .extra-links a {
+  display: inline-block;
+  padding: 15px 25px;
+  margin: 5px;
+  background-color: #ddd;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #333;
+  transition: background-color 0.3s ease;
+}
+
+.main-links a:hover, .extra-links a:hover {
+  background-color: #ccc;
+  text-align: center;
+}
+
+.extra-links {
+  text-align: center;
+}
+
+
+
+
+/* Words of Motivation */
+#motivation {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+#roulette {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Mental Check-Up */
+#message {
+  margin-top: 20px;
+}
+
+#happy, #sad, #angry, #stressed, #calm {
+  padding: 10px 20px;
+  margin: 5px;
+  background-color: #ddd;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* About Us */
+#about-us p {
+  text-align: justify;
+}
+
+/* Helplines */
+#helplines ul {
+  list-style: none;
+  padding: 0;
+}
+
+#helplines li {
+  margin-bottom: 10px;
+  background: url('https://github.com/sebastianarcilla/cs06cs13project/raw/main/outrun-neon-dark-background-purple-2560x1440-4523.jpg') no-repeat center center fixed; /* Highlighted code */
+background-size: cover; 
+}
+
+/* Scholar Struggles */
+#struggles ul {
+  list-style: none;
+  padding: 0;
+}
+
+#struggles li {
+  margin-bottom: 10px;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    transition: background-image 0.5s ease-in-out;
+    background-color: #f0f0f0;
+}
+
+#background-switcher {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+/* General styles */
+todo.html body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+todo.html header {
+    margin-bottom: 20px;
+}
+
+#todo-list {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.input-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+#new-task {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#add-task-button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #28a745;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#add-task-button:hover {
+    background-color: #218838;
+}
+
+.filter-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.filter-btn {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.filter-btn.active {
+    background-color: #0056b3;
+}
+
+.task-item {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+}
+
+.task-text {
+    cursor: pointer;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: grey;
+}
+
+todo.html footer {
+    margin-top: 20px;
+}
+
