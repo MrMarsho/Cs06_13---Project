@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Check-Up</title>
+    <link rel="icon" href="https://github.com/sebastianarcilla/cs06cs13project/raw/main/chill-icon-454x512-uv6tq5yc.png" type="image/x-icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-image: url('https://github.com/sebastianarcilla/cs06cs13project/raw/main/outrun-neon-dark-background-purple-2560x1440-4523.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white; /* To make text readable on dark background */
+        }
+        header {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        main {
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for readability */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+        .feeling-container {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .feeling {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+        .feeling img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+        }
+        .feeling p {
+            margin: 0;
+            font-size: 1.2em;
+        }
+        #message {
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #28a745;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .back-button:hover {
+            background-color: #218838;
+        }
+        footer {
+            margin-top: 20px;
+            text-align: center;
+        }
+        #background-switcher {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            padding: 3px 10px;
+            font-size: 10px;
+            cursor: pointer;
+            background-color: #00bfff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        #background-switcher:hover {
+            background-color: #00a3cc;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Mental Check-Up</h1>
+    </header>
+    <main>
+        <p>How are you feeling today?</p>
+        <div class="feeling-container">
+            <div class="feeling" onclick="setMessage('happy')">
+                <img src="https://github.com/sebastianarcilla/cs06cs13project/raw/main/happy.png" alt="Happy">
+                <p>Happy</p>
+            </div>
+            <div class="feeling" onclick="setMessage('sad')">
+                <img src="https://github.com/sebastianarcilla/cs06cs13project/raw/main/sad.png" alt="Sad">
+                <p>Sad</p>
+            </div>
+            <div class="feeling" onclick="setMessage('angry')">
+                <img src="https://github.com/sebastianarcilla/cs06cs13project/raw/main/angry.png" alt="Angry">
+                <p>Angry</p>
+            </div>
+            <div class="feeling" onclick="setMessage('stressed')">
+                <img src="https://github.com/sebastianarcilla/cs06cs13project/raw/main/stressed.png" alt="Stressed">
+                <p>Stressed</p>
+            </div>
+            <div class="feeling" onclick="setMessage('calm')">
+                <img src="https://github.com/sebastianarcilla/cs06cs13project/raw/main/calm.png" alt="Calm">
+                <p>Calm</p>
+            </div>
+        </div>
+        <p id="message">Click on an emoji to get a motivational quote!</p>
+        <button class="back-button" onclick="window.location.href='/index.html';">Back to Home Page</button>
+    </main>
+    <footer>
+        <p>&copy; Arcilla, Esguerra</p>
+    </footer>
+    
+    <button id="background-switcher">Switch Background</button>
+    <script>
+        function setMessage(feeling) {
+            const message = document.getElementById('message');
+            switch(feeling) {
+                case 'happy':
+                    message.textContent = "That's great to hear! Keep smiling and spread the joy!";
+                    break;
+                case 'sad':
+                    message.textContent = "It's okay to feel sad sometimes. Remember, after the rain comes the rainbow.";
+                    break;
+                case 'angry':
+                    message.textContent = "Try and calm down, put on some music, or just take a deep breath. Don't take it all out on the wrong person or the wrong thing.";
+                    break;
+                case 'stressed':
+                    message.textContent = "Wherever you're from, we get that stress you're feeling right now. Try to concentrate, and remember you're not alone in this.";
+                    break;
+                case 'calm':
+                    message.textContent = "Keep focusing on what you're doing, your lock-in will be crazy! We believe in you!";
+                    break;
+                default:
+                    message.textContent = "";
+            }
+        }
+
+        document.getElementById('background-switcher').addEventListener('click', function() {
+            var body = document.body;
+            if (body.style.backgroundImage === 'url("https://github.com/sebastianarcilla/cs06cs13project/raw/main/light%20mode.jpg")') {
+                body.style.backgroundImage = 'url("https://github.com/sebastianarcilla/cs06cs13project/raw/main/outrun-neon-dark-background-purple-2560x1440-4523.jpg")';
+            } else {
+                body.style.backgroundImage = 'url("https://github.com/sebastianarcilla/cs06cs13project/raw/main/light%20mode.jpg")';
+            }
+        });
+    </script>
+</body>
+</html>

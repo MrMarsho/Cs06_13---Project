@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Words of Motivation</title>
+    <link
+      rel="icon"
+      href="https://github.com/sebastianarcilla/cs06cs13project/raw/main/chill-icon-454x512-uv6tq5yc.png"
+      type="image/x-icon"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+        background-image: url("https://github.com/sebastianarcilla/cs06cs13project/raw/main/outrun-neon-dark-background-purple-2560x1440-4523.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        color: white;
+      }
+      header {
+        margin-bottom: 20px;
+      }
+      main {
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        text-align: center;
+      }
+      #motivation {
+        font-size: 1.5rem;
+        color: #fff;
+        margin-bottom: 20px;
+      }
+      #roulette {
+        padding: 10px 20px;
+        border: none;
+        background-color: #007bff;
+        color: #fff;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      #roulette:hover {
+        background-color: #0056b3;
+      }
+      button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        border: none;
+        background-color: #28a745;
+        color: #fff;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #218838;
+      }
+      footer {
+        margin-top: 20px;
+        text-align: center;
+      }
+      #background-switcher {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        padding: 3px 10px;
+        font-size: 10px;
+        cursor: pointer;
+        background-color: #00bfff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        transition: background-color 0.3s, color 0.3s;
+      }
+      #background-switcher:hover {
+        background-color: #00a3cc;
+        color: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Words of Motivation</h1>
+    </header>
+    <main>
+      <div>
+        <p id="motivation">Click the button to get your motivation!</p>
+        <button id="roulette">Get Motivation</button>
+      </div>
+      <button onclick="window.location.href='/index.html';">
+        Back to Home Page
+      </button>
+    </main>
+    <footer>
+      <p>&copy; Arcilla, Esguerra</p>
+    </footer>
+    
+    <button id="background-switcher">Switch Background</button>
+    <script>
+      document.getElementById('background-switcher').addEventListener('click', function() {
+        var body = document.body;
+        if (body.style.backgroundImage === 'url("https://github.com/sebastianarcilla/cs06cs13project/raw/main/light%20mode.jpg")') {
+          body.style.backgroundImage = 'url("https://github.com/sebastianarcilla/cs06cs13project/raw/main/outrun-neon-dark-background-purple-2560x1440-4523.jpg")';
+        } else {
+          body.style.backgroundImage = 'url("https://github.com/sebastianarcilla/cs06cs13project/raw/main/light%20mode.jpg")';
+        }
+      });
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>

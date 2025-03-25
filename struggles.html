@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholar Struggles</title>
+    <link rel="icon" href="https://github.com/sebastianarcilla/cs06cs13project/raw/main/chill-icon-454x512-uv6tq5yc.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+        main p {
+            font-size: 1.2em;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            background: #fff;
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #555;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .faq-section {
+            margin-top: 20px;
+        }
+        .faq-section h2 {
+            margin-bottom: 10px;
+        }
+        .faq {
+            text-align: left;
+            margin: 0 auto;
+            max-width: 600px;
+        }
+        .faq dt {
+            font-weight: bold;
+            cursor: pointer;
+            background: #fff;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+        .faq dd {
+            margin: 0;
+            padding: 10px;
+            display: none;
+            background: #f9f9f9;
+        }
+        p {
+            color: white;
+        }
+        #background-switcher {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            padding: 3px 10px;
+            font-size: 10px;
+            cursor: pointer;
+            background-color: #00bfff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        #background-switcher:hover {
+            background-color: #00a3cc;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Scholar Struggles</h1>
+    </header>
+
+    <main>
+        <p>It's okay to struggle. We are with you on this one.</p>
+        <p>Here are some common struggles students face:</p>
+        <ul>
+            <li>Overwhelming tests and requirements</li>
+            <li>Intense procrastination</li>
+            <li>Bad company</li>
+            <li>Stress from other sources such as parents or teachers</li>
+        </ul>
+        <button onclick="window.location.href='/index.html';">Back to Home Page</button>
+        <div class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            <dl class="faq">
+                <dt>How can I manage my time better?</dt>
+                <dd>Try creating a schedule and sticking to it. Break your tasks into smaller, manageable chunks.</dd>
+                <dt>What should I do if I feel overwhelmed?</dt>
+                <dd>Take a break, talk to someone you trust, and try to focus on one thing at a time.</dd>
+                <dt>How can I stay motivated?</dt>
+                <dd>Set small goals and reward yourself when you achieve them. Surround yourself with positive influences.</dd>
+            </dl>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; Arcilla, Esguerra</p>
+    </footer>
+    
+    <button id="background-switcher">Switch Background</button>
+    <script>
+        document.getElementById('background-switcher').addEventListener('click', function() {
+            var body = document.body;
+            if (body.style.backgroundImage === 'url("https://github.com/sebastianarcilla/cs06cs13project/raw/main/light%20mode.jpg")') {
+                body.style.backgroundImage = 'url("https://github.com/sebastianarcilla/cs06cs13project/raw/main/outrun-neon-dark-background-purple-2560x1440-4523.jpg")';
+            } else {
+                body.style.backgroundImage = 'url("https://github.com/sebastianarcilla/cs06cs13project/raw/main/light%20mode.jpg")';
+            }
+        });
+
+        document.querySelectorAll('.faq dt').forEach(item => {
+            item.addEventListener('click', () => {
+                const active = document.querySelector('.faq dd.active');
+                if (active && active !== item.nextElementSibling) {
+                    active.classList.remove('active');
+                    active.style.display = 'none';
+                }
+                const dd = item.nextElementSibling;
+                dd.classList.toggle('active');
+                dd.style.display = dd.classList.contains('active') ? 'block' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>

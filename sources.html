@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sources</title>
+    <link rel="icon" href="https://github.com/sebastianarcilla/cs06cs13project/raw/main/chill-icon-454x512-uv6tq5yc.png" type="image/x-icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-image: url('https://github.com/sebastianarcilla/cs06cs13project/raw/main/outrun-neon-dark-background-purple-2560x1440-4523.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white; 
+        }
+        header {
+            margin-bottom: 20px;
+        }
+        #source-list {
+            background-color: rgba(0, 0, 0, 0.7); 
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            max-width: 800px;
+            width: 100%;
+        }
+        ol {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        a {
+            color: #00bfff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #28a745;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        footer {
+            margin-top: 20px;
+            text-align: center;
+        }
+        #background-switcher {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            padding: 3px 10px;
+            font-size: 10px;
+            cursor: pointer;
+            background-color: #00bfff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        #background-switcher:hover {
+            background-color: #00a3cc;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Sources</h1>
+    </header>
+    <main>
+        <div id="source-list">
+            <ol>
+                <li>Space invaders. (n.d.). CodePen. <a href="https://codepen.io/adelciotto/pen/WNzRYy" target="_blank">https://codepen.io/adelciotto/pen/WNzRYy</a></li>
+                <li>yojoecool/SpaceInvaders: Simple Space Invaders clone using HTML and JavaScript. (n.d.). GitHub. <a href="https://github.com/yojoecool/SpaceInvaders" target="_blank">https://github.com/yojoecool/SpaceInvaders</a></li>
+                <li>GeeksforGeeks. (2024, November 22). Simple TicTacToe Game using JavaScript. GeeksforGeeks. <a href="https://www.geeksforgeeks.org/simple-tic-tac-toe-game-using-javascript/" target="_blank">https://www.geeksforgeeks.org/simple-tic-tac-toe-game-using-javascript/</a></li>
+                <li>Tutorial: Tic-Tac-Toe – React. (n.d.). <a href="https://react.dev/learn/tutorial-tic-tac-toe" target="_blank">https://react.dev/learn/tutorial-tic-tac-toe</a></li>
+                <li>Maqbool, T. (2024, September 1). How you can make a Tic Tac Toe Game in HTML, CSS, and JS? Medium. <a href="https://medium.com/@tajammalmaqbool11/how-you-can-make-tic-tac-toe-game-in-html-css-and-js-f3da3cb18b36" target="_blank">https://medium.com/@tajammalmaqbool11/how-you-can-make-tic-tac-toe-game-in-html-css-and-js-f3da3cb18b36</a></li>
+            </ol>
+        </div>
+        <button onclick="window.location.href='/index.html';">Back to Home Page</button>
+    </main>
+    <footer>
+        <p>&copy; Arcilla, Esguerra</p>
+    </footer>
+    
+    <button id="background-switcher">Switch Background</button>
+    <script>
+        document.getElementById('background-switcher').addEventListener('click', function() {
+            var body = document.body;
+            if (body.style.backgroundImage === 'url("https://github.com/sebastianarcilla/cs06cs13project/raw/main/light%20mode.jpg")') {
+                body.style.backgroundImage = 'url("https://github.com/sebastianarcilla/cs06cs13project/raw/main/outrun-neon-dark-background-purple-2560x1440-4523.jpg")';
+            } else {
+                body.style.backgroundImage = 'url("https://github.com/sebastianarcilla/cs06cs13project/raw/main/light%20mode.jpg")';
+            }
+        });
+    </script>
+</body>
+</html>
