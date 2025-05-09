@@ -77,6 +77,24 @@
             background-color: #00a3cc;
             color: #000;
         }
+        /* Clicker game CSS */
+        #clicker-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+        #click-count {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        #click-image {
+            cursor: pointer;
+            width: 150px;
+            height: 150px;
+        }
+        #click-message {
+            margin-top: 10px;
+            font-size: 18px;
+        }
     </style>
 </head>
 <body>
@@ -90,7 +108,7 @@
                 <li>yojoecool/SpaceInvaders: Simple Space Invaders clone using HTML and JavaScript. (n.d.). GitHub. <a href="https://github.com/yojoecool/SpaceInvaders" target="_blank">https://github.com/yojoecool/SpaceInvaders</a></li>
                 <li>GeeksforGeeks. (2024, November 22). Simple TicTacToe Game using JavaScript. GeeksforGeeks. <a href="https://www.geeksforgeeks.org/simple-tic-tac-toe-game-using-javascript/" target="_blank">https://www.geeksforgeeks.org/simple-tic-tac-toe-game-using-javascript/</a></li>
                 <li>Tutorial: Tic-Tac-Toe – React. (n.d.). <a href="https://react.dev/learn/tutorial-tic-tac-toe" target="_blank">https://react.dev/learn/tutorial-tic-tac-toe</a></li>
-                <li>Maqbool, T. (2024, September 1). How you can make a Tic Tac Toe Game in HTML, CSS, and JS? Medium. <a href="https://medium.com/@tajammalmaqbool11/how-you-can-make-tic-tac-toe-game-in-html-css-and-js-f3da3cb18b36" target="_blank">https://medium.com/@tajammalmaqbool11/how-you-can-make-tic-tac-toe-game-in-html-css-and-js-f3da3cb18b36</a></li>
+                <li>Maqbool, T. (2024, September 1). How you can make a Tic Tac Toe Game in HTML, CSS, and JS? Medium. <a href="https://medium.com/@tajammalmaqbool11/how-you-can-make-tic-tac-toe-game-in-html-css-and-js-6f3c4a5c1e7d" target="_blank">https://medium.com/@tajammalmaqbool11/how-you-can-make-tic-tac-toe-game-in-html-css-and-js-6f3c4a5c1e7d</a></li>
             </ol>
         </div>
         <button onclick="window.location.href='/index.html';">Back to Home Page</button>
@@ -100,6 +118,11 @@
     </footer>
     
     <button id="background-switcher">Switch Background</button>
+    <div id="clicker-container">
+        <div id="click-count">Clicks: 0</div>
+        <img id="click-image" src="https://github.com/MrMarsho/Cs06_13---Project/raw/main/images.jpg" alt="Click Me!">
+        <div id="click-message"></div>
+    </div>
     <script>
         document.getElementById('background-switcher').addEventListener('click', function() {
             var body = document.body;
@@ -107,6 +130,34 @@
                 body.style.backgroundImage = 'url("https://github.com/sebastianarcilla/cs06cs13project/raw/main/outrun-neon-dark-background-purple-2560x1440-4523.jpg")';
             } else {
                 body.style.backgroundImage = 'url("https://github.com/sebastianarcilla/cs06cs13project/raw/main/light%20mode.jpg")';
+            }
+        });
+
+        // Clicker game JavaScript
+        let clickCount = 0;
+        const clickCountElement = document.getElementById('click-count');
+        const clickMessageElement = document.getElementById('click-message');
+
+        const messages = {
+            100: "you have worshipped skibidi toilet 100 times. why?",
+            200: "you have worshipped skibidi toilet 200 times. what is the reasoning?",
+            300: "you have worshipped skibidi toilet 300 times. is there a mental reason?",
+            400: "you have worshipped skibidi toilet 400 times. its always okay to stop...",
+            500: "you have worshipped skibidi toilet 500 times. this has to be a troll, or are you just a true gamer?",
+            600: "you have worshipped skibidi toilet 600 times. don't you have other things to do with your life?",
+            650: "you have worshipped skibidi toilet 650 times. you could be doing requirements right now... but instead you're wasting your time here.",
+            700: "you have worshipped skibidi toilet 700 times. so many things could have been done with your life by now.",
+            800: "you have worshipped skibidi toilet 800 times. if you're sticking around, i guess ill tell you my plan for this clicker.",
+            900: "i will be making this guy have different animations.",
+        };
+        
+        
+
+        document.getElementById('click-image').addEventListener('click', function() {
+            clickCount++;
+            clickCountElement.textContent = `Clicks: ${clickCount}`;
+            if (messages[clickCount]) {
+                clickMessageElement.textContent = messages[clickCount];
             }
         });
     </script>
