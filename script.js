@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("DOMContentLoaded", () => {
   const taskInput = document.getElementById("new-task");
   const addTaskButton = document.getElementById("add-task-button");
   const taskList = document.getElementById("task-list");
